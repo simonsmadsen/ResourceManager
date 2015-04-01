@@ -15,26 +15,18 @@ class ResourceManagerServiceProvider extends ServiceProvider {
 
         if( ! Schema::hasTable('resources') )
         {
-            Schema::create('resources', function($table)
-            {
-
-                $table->increments('id');
-                $table->string('columns');
-                $table->string('name');
-                $table->string('model');
-                $table->dateTime('created_at');
-                $table->dateTime('updated_at');
-            });
-
-            $r = new Resource([
-               'columns' => 'columns,name,model',
-                'name' => 'Resource',
-                'model' => 'ResourceManager\Resource'
-            ]);
-            $r->save();
+            $this->createTable();
         }
 
+        $this->publishConfig();
 
+        $this->loadViewsFrom(__DIR__.'/views', 'resourceManager');
+
+        include __DIR__.'/ResourceRoutes.php';
+
+    }
+
+    private function publishConfig(){
 
         $this->mergeConfigFrom(
             __DIR__.'/config/resourceManager.php', 'resourceManager'
@@ -44,45 +36,31 @@ class ResourceManagerServiceProvider extends ServiceProvider {
             __DIR__.'/config/resourceManager.php' => config_path('resourceManager.php'),
         ]);
 
+    }
 
-        $this->loadViewsFrom(__DIR__.'/views', 'resourceManager');
+    private function createTable(){
 
-        Route::get('/res/{resource?}', function($resource = null){
+        Schema::create('resources', function($table)
+        {
 
-            $viewBag = config('resourceManager.viewbag');
-            $viewBag['r'] = new ResourceViewer($resource);
-
-
-            return view('resourceManager::welcome',$viewBag);
-
+            $table->increments('id');
+            $table->string('columns');
+            $table->string('name');
+            $table->string('model');
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at');
         });
 
-        Route::post('/res/update',function(){
+        while(count(Resource::all()) < 1){
 
-            $modelName = Input::get('resource_model');
-            $model = new $modelName;
-            $model = $model->find(Input::get('id'));
-            $model->fill(Input::all());
-            $model->update();
-            return Redirect::back();
-        });
+            $r = new Resource([
+                'columns' => 'columns,name,model',
+                'name' => 'Resource',
+                'model' => 'ResourceManager\Resource'
+            ]);
+            $r->save();
 
-        Route::post('/res/create',function(){
-
-
-            $modelName = Input::get('resource_model');
-            $model = new $modelName(Input::all());
-            $model->save();
-
-            return Redirect::back();
-        });
-
-        Route::get('/res/delete/{id}/{model}',function($id,$model){
-            $model = str_replace('_','\\',$model);
-            $model = new $model;
-            $model->destroy($id);
-            return Redirect::back();
-        });
+        }
 
     }
 

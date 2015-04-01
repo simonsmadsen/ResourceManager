@@ -5,7 +5,7 @@ namespace ResourceManager;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ResourceViewer extends  Model {
+class ResourceViewer extends Model {
 
     protected $resourceToLookUp;
 
