@@ -1,0 +1,19 @@
+{
+    "name": "madsen/resourceManager",
+    "description": "manage your database data",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simon Madsen",
+            "email": "simon@smadsen.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": "~5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "resourceManager\\": "src/resourceManager/"
+        }
+    }
+}
