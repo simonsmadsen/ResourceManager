@@ -49,7 +49,7 @@ class ResourceManagerServiceProvider extends ServiceProvider {
 
         Route::get('/res/{resource?}', function($resource = null){
 
-            $viewBag = [];
+            $viewBag = config('resourceManager.viewbag');
             $viewBag['r'] = new ResourceViewer($resource);
 
 

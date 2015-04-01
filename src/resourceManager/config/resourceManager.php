@@ -2,7 +2,8 @@
 
 return [
 
-    'yield-template' => 'master',
-    'yield-javascript' => 'javascript'
+    'yield-template' => 'site.master',
+    'yield-javascript' => 'javascript',
+    'viewbag' => ['page' =>'js'],
 
 ];
