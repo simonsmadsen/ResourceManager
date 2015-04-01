@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c50ca71-171f-43d1-a171-4bd4b3cbf751" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resourceManager/ResourceRoutes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resourceManager/ResourceManagerServiceProvider.php" afterPath="$PROJECT_DIR$/src/resourceManager/ResourceManagerServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resourceManager/ResourceViewer.php" afterPath="$PROJECT_DIR$/src/resourceManager/ResourceViewer.php" />
-    </list>
+    <list default="true" id="0c50ca71-171f-43d1-a171-4bd4b3cbf751" name="Default" comment="" />
     <ignored path="resourceManager.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
